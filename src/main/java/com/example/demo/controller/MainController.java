@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.HelloDto;
+import com.example.demo.dto.response.ResponseDto;
 
 // Rest : 메서드에 따라서 기능을 지정하는 것 // 현재는 GET메서드
 // html을 반환하는 것이 아니다. // Controller : html을 반환한다.
@@ -51,8 +52,9 @@ public class MainController {
 	// @PostMapping(end-point) : 해당 end-point로 Post 방식의 Request가 왔을 때 동작
 	@PostMapping(HELLO)
 	// @RequestBody : 해당 Request의 Body에서 Json을 인식해 인스턴스로 변경
-	public HelloDto postHello(@RequestBody HelloDto requestBody) {
-		return requestBody;
+	public ResponseDto<HelloDto> postHello(@RequestBody HelloDto requestBody) {
+		
+		return ResponseDto.setSuccess("hello", requestBody);
 	}
 	
 	// @PutMapping : 해당 end-point로 Put 방식의 Request가 왔을 때 동작
