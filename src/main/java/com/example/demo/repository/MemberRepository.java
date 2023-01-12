@@ -22,3 +22,4 @@ public interface MemberRepository extends JpaRepository<MemberEntity, String> {
 	public List<MemberEntity> myFindAll(String email);
 
 }
+

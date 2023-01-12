@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,18 +26,24 @@ public class UserController {
 	@Autowired UserService userService;
 	
 	// CRUD
-	// C
-	@GetMapping("{email}")
-	public ResponseDto<GetUserResponseDto> GetUser(@PathVariable("email") String email) { // 어노테이션 pathVariable("path")  
-		return userService.GetUser(email);
-	}
-	//Dto를 새로 class 만들어서 넣어야한다.
 	
 	// R
 	@PostMapping("")
 	public ResponseDto<ResultResponseDto> postUser(@RequestBody PostUserDto requestBody) {
 		return userService.postUser(requestBody);
 	}
+	
+	@GetMapping("")
+	public ResponseDto<List<GetUserResponseDto>> getAllUser(){
+		return userService.getAllUser();
+	}
+	
+	// C
+	@GetMapping("{email}")
+	public ResponseDto<GetUserResponseDto> GetUser(@PathVariable("email") String email) { // 어노테이션 pathVariable("path")  .
+		return userService.GetUser(email);
+	}
+	//Dto를 새로 class 만들어서 넣어야한다.
 	
 	// U
 	@PatchMapping("")
